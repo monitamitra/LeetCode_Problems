@@ -1,7 +1,6 @@
 class RandomizedSet {
     private HashMap<Integer, Integer> map;
     private ArrayList<Integer> list;
-    private int curr;
 
     public RandomizedSet() {
         list = new ArrayList<>();
