@@ -15,10 +15,10 @@
  */
 class Solution {
     public boolean isValidBST(TreeNode root) {
-        return isValid(root, Long.MIN_VALUE, Long.MAX_VALUE);
+        return helper(Long.MIN_VALUE, root, Long.MAX_VALUE);
     }
 
-    private boolean isValid(TreeNode temp, long min, long max) {
+    private boolean helper(long min, TreeNode temp, long max) {
         if (temp == null) {
             return true;
         }
@@ -27,7 +27,7 @@ class Solution {
             return false;
         }
 
-        return isValid(temp.left, min, temp.val) && isValid(temp.right, temp.val, max);
+        return helper(min, temp.left, temp.val) && 
+        helper(temp.val, temp.right, max);
     }
-
 }
