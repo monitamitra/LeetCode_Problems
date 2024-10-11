@@ -7,11 +7,11 @@ class Solution {
             res[curr]++;
         }
 
-        for (int i = 0; i < nums.length + 1; i++) {
+        for (int i = 0; i < res.length; i++) {
             if (res[i] == 0) {
                 return i;
             }
         }
-        return -1;
+        return 0;
     }
 }
