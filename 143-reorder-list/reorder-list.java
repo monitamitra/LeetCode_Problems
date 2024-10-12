@@ -10,23 +10,40 @@
  */
 class Solution {
     public void reorderList(ListNode head) {
-        Stack<ListNode> stack = new Stack<>();
+        ListNode slow = head;
+        ListNode fast = head.next;
 
-        ListNode temp = head;
-        while (temp != null) {
-            stack.push(temp);
-            temp = temp.next;
+        // get middle node of list
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
         }
 
-        int length = stack.size();
-        temp = head;
-        for (int i = 0; i < length / 2; i++) {
-            ListNode next = temp.next;
-            ListNode last = stack.pop();
-            temp.next = last;
-            last.next = next;
-            temp = next;
+        ListNode mid = slow.next;
+        // will be last node of new list
+        slow.next = null;
+        ListNode prev = null;
+
+        // reversing second half of list 
+        while (mid != null) {
+            ListNode temp = mid.next;
+            mid.next = prev;
+            prev = mid;
+            mid = temp;
         }
-        temp.next = null;
+
+        // merge two halves of list
+        ListNode tail = prev; 
+        ListNode beg = head;
+        // second half of list could be shorter than first half
+        while (tail != null) {
+            ListNode temp = beg.next;
+            ListNode temp2 = tail.next;
+            beg.next = tail;
+            tail.next = temp;
+            // shift pointers
+            beg = temp;
+            tail = temp2;
+        }
     }
 }
