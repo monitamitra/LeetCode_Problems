@@ -24,8 +24,11 @@ class Solution {
             return 0;
             
         }
+        // compute max path sum without split
         int left = Math.max(0, pathsum(root.left));
         int right = Math.max(0, pathsum(root.right));
+        
+        // compute max path sum with split
         ans = Math.max(ans, left+right+root.val);
 
         return Math.max(left, right)+root.val;
