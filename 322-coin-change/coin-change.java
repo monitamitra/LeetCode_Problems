@@ -6,14 +6,14 @@ class Solution {
             dp[i] = amount + 1;
         }
 
+        // bottom up approach
         dp[0] = 0;
-
         for (int i = 1; i < dp.length; i++) {
             int curr_amt = dp[i];
             for (int coin : coins) {
                 // found a solution?
                 if (i - coin >= 0) {
-                    // curr_amt - coin <- amt left over after taking current coin
+                    // i - coin <- amt left over after taking current coin
                     dp[i] = Math.min(dp[i], 1 + dp[i - coin]);
                 }
             }
