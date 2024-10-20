@@ -4,6 +4,8 @@ class Solution {
         int offset = 1;
 
         for (int i = 1; i < n + 1; i++) {
+            // change offset when reached new MSB
+            // MSB = 2, 4, 8, 16....
             if (offset * 2 == i) {
                 offset = i;
             }
