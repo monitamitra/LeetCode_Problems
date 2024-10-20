@@ -4,8 +4,11 @@ public class Solution {
         int res = 0;
 
         for (int i = 0; i < 32; i++) {
-            // take next bit from n and put in appropriate spot in output 
+            // shift i bits to right and extract LSB (rightmost bit) 
             int bit = (n >> i) & 1;
+            // putting prev LSB and placing it in MSB (other left side)
+            // of output number 
+            // putting changed bit into res
             res = res | (bit << (31 - i));
         }
         return res;
