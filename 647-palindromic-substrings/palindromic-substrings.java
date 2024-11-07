@@ -1,31 +1,20 @@
 class Solution {
     public int countSubstrings(String s) {
-        int n = s.length();
-        boolean[][] dp = new boolean[n][n];
-        int count = 0;
-
-        // Every single character is a palindrome
-        for (int i = 0; i < n; i++) {
-            dp[i][i] = true;
-            count++;
-        }
-
-        // Check for palindromic substrings of length 2 and above
-        for (int len = 2; len <= n; len++) {
-            for (int i = 0; i <= n - len; i++) {
-                int j = i + len - 1;
-
-                // If characters at both ends match
+        boolean[][] dp  = new boolean[s.length()][s.length()];
+        int ans = 0;
+        for (int i = s.length() - 1; i >= 0; i--) {
+            for (int j = i; j < s.length(); j++) {
                 if (s.charAt(i) == s.charAt(j)) {
-                    // If length is 2 or the inner substring is a palindrome
-                    if (len == 2 || dp[i + 1][j - 1]) {
+                    if (j - i <= 1) {
                         dp[i][j] = true;
-                        count++;
+                        ans++;
+                    } else if (dp[i + 1][j - 1]) {
+                        dp[i][j] = true;
+                        ans++;
                     }
                 }
             }
         }
-
-        return count;
+        return ans;
     }
 }
