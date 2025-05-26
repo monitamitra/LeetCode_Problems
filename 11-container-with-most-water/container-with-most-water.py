@@ -4,7 +4,7 @@ class Solution:
         i = 0
         j = len(height) - 1
 
-        while i <= j:
+        while i < j:
             curr_height = min(height[i], height[j])
             curr_area = curr_height * (j - i)
             res = max(curr_area, res)
