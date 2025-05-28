@@ -1,16 +1,13 @@
 class Solution:
     def isValid(self, s: str) -> bool:
         stack = []
-        pairs = {
-            '(': ')',
-            '{': '}',
-            '[': ']'
-        }
+        matching_braces = {")" : "(", "]" : "[", "}" : "{"}
 
-        for parantheses in s:
-            if parantheses in pairs:
-                stack.append(parantheses)
-            elif len(stack) == 0 or parantheses != pairs[stack.pop()]:
-                return False
-        
+        for char in s:
+            if char in "({[":
+                stack.append(char)
+            elif char in ")]}":
+                if not stack or stack.pop() != matching_braces[char]:
+                    return False
+
         return len(stack) == 0
