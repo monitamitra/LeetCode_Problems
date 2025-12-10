@@ -4,9 +4,10 @@ class Solution:
         right = len(height) - 1
         res = 0
 
-        while left != right:
+        while left < right:
             currArea = min(height[left], height[right]) * abs(right - left)
             res = max(currArea, res)
+            
             if height[left] <= height[right]:
                 left += 1
             else:
