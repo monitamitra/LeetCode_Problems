@@ -1,13 +1,17 @@
 class Solution:
     def isValid(self, s: str) -> bool:
+        map = {"(" : ")", "{" : "}", "[" : "]"}
         stack = []
-        matching_braces = {")" : "(", "]" : "[", "}" : "{"}
 
         for char in s:
-            if char in "({[":
+            if char in map:
                 stack.append(char)
-            elif char in ")]}":
-                if not stack or stack.pop() != matching_braces[char]:
+            else:
+                if not stack:
                     return False
-
+                
+                temp = stack.pop()
+                if char != map[temp]:
+                    return False
+        
         return len(stack) == 0
