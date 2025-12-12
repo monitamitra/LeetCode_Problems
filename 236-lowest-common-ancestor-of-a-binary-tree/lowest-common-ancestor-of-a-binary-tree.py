@@ -15,13 +15,13 @@ class Solution:
             left_search = helper(curr.left)
             right_search = helper(curr.right)
 
-            if not left_search:
-                return right_search
-            
-            if not right_search:
-                return left_search
-            
             # current node is common ancestor
-            return curr
+            if left_search and right_search:
+                return curr
+            
+            if left_search:
+                return left_search
+            else:
+                return right_search
             
         return helper(root)
