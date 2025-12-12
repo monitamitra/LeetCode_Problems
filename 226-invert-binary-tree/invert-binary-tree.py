@@ -14,13 +14,10 @@ class Solution:
             if not curr:
                 return
 
-            temp_left = curr.left
-            temp_right = curr.right
-
             curr.left, curr.right = curr.right, curr.left
 
-            helper(temp_left)
-            helper(temp_right)
+            helper(curr.left)
+            helper(curr.right)
 
         helper(root)
         return root
