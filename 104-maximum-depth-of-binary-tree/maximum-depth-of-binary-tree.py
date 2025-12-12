@@ -13,7 +13,7 @@ class Solution:
             if not curr:
                 return 0
             
-            return max(1 + helper(curr.left), 1 + helper(curr.right))
+            return 1 + max(helper(curr.left), helper(curr.right))
         
         
         return helper(root)
